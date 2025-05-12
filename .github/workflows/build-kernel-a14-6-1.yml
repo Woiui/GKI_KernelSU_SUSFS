@@ -13,7 +13,7 @@ on:
         type: choice
         options:
           - Official
-          - Next
+          - 下一页
           - MKSU
           - SukiSU
         default: SukiSU
@@ -40,6 +40,22 @@ on:
         required: true
         type: boolean
         default: true
+      CPU:
+        description: "芯片代号"
+        required: true
+        type: choice
+        options: [sm8650]
+        default: sm8650
+      FEIL:
+        description: "配置文件"
+        required: true
+        type: choice
+        options: [gt5pro]
+        default: gt5pro
+      os_patch_level:
+        description: "OS补丁级别(如2024-01)"
+        required: true
+        type: string        
 jobs:
 
   build-kernel-a14-6-1:
@@ -52,4 +68,7 @@ jobs:
       version: ${{ inputs.version }}
       use_zram: ${{ inputs.use_zram }}
       use_kpm: ${{ inputs.use_kpm }}
+      CPU: ${{ inputs.CPU }}
+      FEIL: ${{ inputs.FEIL }}
+      os_patch_level: ${{ inputs.os_patch_level }}
 
